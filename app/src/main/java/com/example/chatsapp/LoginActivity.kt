@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginToSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
+            finish()
             startActivity(intent)
         }
 
@@ -60,16 +61,16 @@ class LoginActivity : AppCompatActivity() {
     private fun login(email: String, password: String) {
         //Login user
 
-        mAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) {
+                if (it.isSuccessful) {
                     // Sign in success
                     val intent = Intent(this, MainActivity::class.java)
+                    finish()
                     startActivity(intent)
 
                 } else {
                     // If sign in fails
-                    Toast.makeText(this,"Please check your entries!!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Log in failed!!", Toast.LENGTH_SHORT).show()
 
 
                 }
